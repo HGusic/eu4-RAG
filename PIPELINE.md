@@ -21,7 +21,7 @@ Do these in order. You can skip a step if its output already exists and the inpu
 | 6 | `cd ../index` then `python build.py` | `data/chroma/` |
 | 7 | `cd ..` then `python retrieve.py "your question"` | nothing (prints hits) |
 | 8 | Ollama running (`ollama pull llama3.1`) | model on disk (Ollama, not this repo) |
-| 9 | `python -m streamlit run app.py` **from `src/`** | local web UI |
+| 9 | From `src/`: `python -m uvicorn api:app --reload --port 8000` then open http://127.0.0.1:8000 | HTML UI (Streamlit `app.py` still exists) |
 
 **Full wiki later:** drop `--limit` on catalog, then fetch without `--limit` (slow, polite). Then re-run extract → clean → chunk → build.
 

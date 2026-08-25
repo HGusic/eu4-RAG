@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EU4 Wiki RAG</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <p class="kicker">Local RAG · Europa Universalis IV wiki</p>
+      <h1>Ask the wiki</h1>
+      <p class="lede">
+        Answers come from indexed wiki chunks on this machine, then Ollama.
+        Citations link to paradoxwikis.com.
+      </p>
+    </header>
+
+    <form id="ask-form">
+      <label for="question">Question</label>
+      <textarea id="question" name="question" rows="3" required placeholder="How is advisor hiring cost calculated?"></textarea>
+      <div class="row">
+        <label class="inline">Chunks
+          <input id="k" type="number" min="1" max="8" value="5" />
+        </label>
+        <button type="submit" id="ask-btn">Ask</button>
+      </div>
+    </form>
+
+    <p id="status" class="status" hidden></p>
+    <section id="answer-panel" hidden>
+      <h2>Answer</h2>
+      <div id="answer" class="answer"></div>
+    </section>
+    <section id="sources-panel" hidden>
+      <h2>Sources</h2>
+      <div id="sources"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
