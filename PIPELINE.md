@@ -23,7 +23,14 @@ Do these in order. You can skip a step if its output already exists and the inpu
 | 8 | Ollama running (`ollama pull llama3.1`) | model on disk (Ollama, not this repo) |
 | 9 | From `src/`: `python -m uvicorn api:app --reload --port 8000` then open http://127.0.0.1:8000 | HTML UI (Streamlit `app.py` still exists) |
 
-**Full wiki later:** drop `--limit` on catalog, then fetch without `--limit` (slow, polite). Then re-run extract → clean → chunk → build.
+**Full wiki in one go (no `--limit`):** from the repo root, on the branch that has `src/`:
+
+```bash
+python run_pipeline.py
+python run_pipeline.py --limit 50
+```
+
+Resume after a failed crawl: `python run_pipeline.py --from fetch` (skips pages already in `data/raw`). Later stages: `--from extract` / `clean` / `chunk` / `index`. Does not install pip packages or start the UI.
 
 **If you only change cleaning/chunking:** start at step 4 or 5, then rebuild the index (step 6). You do not recrawl.
 
